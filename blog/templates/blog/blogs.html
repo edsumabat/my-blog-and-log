@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <p>Blogs:</p>
+    <ul>
+        {% for blog in blogs %}
+        <li>
+            <p>
+                <a href="{% url 'blog:blog' blog.id %}">
+                    {{ blog.text|linebreaks }}
+                </a>
+            </p>
+        </li>
+        {% empty %}
+            <li>There are no blogs yet.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'blog:new_blog' %}">Add a new blog</a>
+
+{% endblock content %}

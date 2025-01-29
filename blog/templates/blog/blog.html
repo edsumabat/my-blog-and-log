@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <p>{{ blog.text }}</p>
+
+    <p>Posts in this blog:</p>
+    <ul>
+        {% for post in posts %}
+        <li>
+            <p>
+                {{ post.text|linebreaks }}
+            </p>
+        </li>
+        {% empty %}
+            <li>There are no posts yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'blog:blogs' %}">Return to all blogs</a>
+
+{% endblock content %}
