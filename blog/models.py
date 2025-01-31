@@ -2,7 +2,7 @@ from django.db import models
 
 class Blog(models.Model):
     """The blog of a user."""
-    name = models.TextField(max_length=50)
+    name = models.CharField(max_length=50)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -12,7 +12,7 @@ class Blog(models.Model):
 class Blog_Post(models.Model):
     """Individual blog post."""
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
-    title = models.TextField()
+    title = models.TextField(max_length=200)
     body = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 

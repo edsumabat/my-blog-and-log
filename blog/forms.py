@@ -6,11 +6,9 @@ class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
         fields = ['name']
-        labels = {'name':''}
 
 class Blog_Post_Form(forms.ModelForm):
     class Meta:
         model = Blog_Post
         fields = ['title', 'body']
-        labels = {'title': '', 'body': ''}
         widgets = {'body': forms.Textarea(attrs={'cols': 80})}
