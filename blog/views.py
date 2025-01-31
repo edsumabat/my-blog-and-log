@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from .models import Blog
+from .models import Blog, Blog_Post
 from .forms import BlogForm, Blog_Post_Form
 
 def index(request):
@@ -59,3 +59,22 @@ def new_blog_post(request, blog_id):
     # Display a blank or invalid form.
     context = {'blog': blog, 'form': form}
     return render(request, 'blog/new_blog_post.html', context)
+
+
+def edit_blog_post(request, blog_post_id):
+    """Edit a blog post."""
+    blog_post = Blog_Post.objects.get(id=blog_post_id)
+    blog = blog_post.blog
+
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current blog post.
+        form = Blog_Post_Form(instance=blog_post)
+    else:
+        # POST data submitted; process data.
+        form = Blog_Post_Form(instance=blog_post, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blog:blog', blog_id=blog.id)
+        
+    context = {'blog_post': blog_post, 'blog': blog, 'form': form}
+    return render(request, 'blog/edit_blog_post.html', context)
