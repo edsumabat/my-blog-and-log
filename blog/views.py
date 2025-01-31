@@ -53,7 +53,8 @@ def new_blog_post(request, blog_id):
         if form.is_valid():
             new_blog_post = form.save(commit=False)
             new_blog_post.blog = blog
-            return redirect('blog:blog')
+            new_blog_post.save()
+            return redirect('blog:blog', blog_id=blog.id)
     
     # Display a blank or invalid form.
     context = {'blog': blog, 'form': form}
