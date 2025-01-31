@@ -12,10 +12,10 @@
         {% for post in posts %}
         <li>
             <p>
-                {{ post.title|linebreaks }}
+                {{ post.title|truncatechars:100|linebreaks }}
             </p>
             <p>
-                {{ post.body|linebreaks }}
+                {{ post.body|truncatechars:100|linebreaks }}
             </p>
             <p>
                 <a href="{% url 'blog:edit_blog_post' post.id %}">Edit entry</a>
