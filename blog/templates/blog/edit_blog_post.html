@@ -4,7 +4,7 @@
 
 <p><a href="{% url 'blog:blog' blog.id %}">{{ blog.name }}</a></p>
 
-    <p>Edit entry:</p>
+    <p>Edit blog post:</p>
 
     <form action="{% url 'blog:edit_blog_post' blog_post.id %}" method='post'>
         {% csrf_token %}
