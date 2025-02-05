@@ -7,9 +7,8 @@
         {% for blog in blogs %}
         <li>
             <p>
-                <a href="{% url 'blog:blog' blog.id %}">
-                    {{ blog.name|linebreaks }}
-                </a>
+                    <a href="{% url 'blog:blog' blog.id %}">{{ blog.name }}</a> 
+                    - by {{ blog.owner.username }}
             </p>
         </li>
         {% empty %}

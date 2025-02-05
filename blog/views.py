@@ -12,7 +12,7 @@ def index(request):
 
 def blogs(request):
     """Display all blogs."""
-    blogs = Blog.objects.all()
+    blogs = Blog.objects.all().select_related('owner')
     context = {'blogs': blogs,}
     return render(request, 'blog/blogs.html', context)
 
@@ -21,7 +21,7 @@ def blog(request, blog_id):
     """Display all individual blog posts."""
     blog = Blog.objects.get(id=blog_id)
     posts = blog.blog_post_set.all()
-    context = {'blog': blog, 'posts': posts}
+    context = {'blog': blog, 'posts': posts, 'user': request.user}
     return render(request, 'blog/blog.html', context)
 
 @login_required
