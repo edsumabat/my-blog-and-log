@@ -13,7 +13,7 @@ def index(request):
 def blogs(request):
     """Display all blogs."""
     blogs = Blog.objects.all().select_related('owner')
-    context = {'blogs': blogs,}
+    context = {'blogs': blogs, 'user': request.user}
     return render(request, 'blog/blogs.html', context)
 
 

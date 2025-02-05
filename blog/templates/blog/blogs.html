@@ -1,21 +1,25 @@
 {% extends 'blog/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+    <h1>Blogs</h1>
+{% endblock page_header %}
 
 {% block content %}
+    <a class="btn btn-primary" href="{% url 'blog:new_blog' %}" role="button">Add a new blog</a>
 
-    <p>Blogs:</p>
-    <ul>
+    <ul class="list-group border-bottom pb-2 mb-4">
         {% for blog in blogs %}
-        <li>
-            <p>
-                    <a href="{% url 'blog:blog' blog.id %}">{{ blog.name }}</a> 
-                    - by {{ blog.owner.username }}
-            </p>
-        </li>
+            <li class="list-group-item border-0">
+                <a href="{% url 'blog:blog' blog.id %}" class="list-group-item list-group-item-action">{{ blog.name }} - by {{ blog.owner.username }}</a>
+            </li>
         {% empty %}
-            <li>There are no blogs yet.</li>
+            <li class="list-group-item border-0">No topics have been added yet.</li>
         {% endfor %}
+
     </ul>
 
-    <a href="{% url 'blog:new_blog' %}">Add a new blog</a>
 
-{% endblock content %}
+
+
+{% endblock content%}
